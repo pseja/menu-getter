@@ -5,6 +5,9 @@ import fitz
 from PIL import Image, ImageTk
 import tkinter as tk
 from holidays import CZ
+from time import sleep
+from pyautogui import Point, moveTo
+from random import randint
 
 
 def remove_old_files():
@@ -71,7 +74,14 @@ def handle_and_display_images():
     window.attributes('-fullscreen', True)
 
     # STARTING TKINTER MAIN EVENT LOOP
-    window.mainloop()
+    startPos = Point(screen_width - 5, screen_height - 5)
+    while True:
+        window.update()
+        randNum = randint(1, 10)
+        moveTo(startPos.x + randNum, startPos.y)
+        sleep(1)
+        moveTo(startPos.x - randNum, startPos.y)
+        sleep(1)
 
 
 def get_holiday_list():
